@@ -187,6 +187,9 @@ df.fillna({컬럼:값, 컬럼:값})
 Series.map(함수 이름) - Series 데이터 모든 값에 적용
 DataFrame.apply(함수 이름, axis) - DataFrame의 row, column 단위로 적용
 DataFrame.applymap(함수 이름) - DataFrame의 모든 값에 일괄 적용
+
+apply 를 사용하지 않고 해결할수 있는 방법이 많을텐데
+굳이 사용하는 이유가 있을지..
 '''
 
 tempdf = pd.DataFrame(np.arange(12).reshape(4, 3), columns=['a', 'b', 'c'])
