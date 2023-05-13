@@ -73,4 +73,35 @@ site = pd.read_csv('./pandas/data/survey_site.csv') #관측한 위치
 survey = pd.read_csv('./pandas/data/survey_survey.csv') #날씨 정보
 visited = pd.read_csv('./pandas/data/survey_visited.csv') #관측한 날짜
 
-print(person.head(3), site, survey.head(3), visited.head(3))
+'''
+person 과 survey는 공통으로 가지고 있는 데이터의 column 이름이 서로 다르다.
+person 에서는 ident라는 이름의 column 이고 vurvey 에서는 person이라는 이름의 column이다
+이렇게 하나의 공통된 column으로 다른 column도 join하고 싶을 때 merge를 사용한다.
+'''
+
+#person의 ident survey의 person 값을 기준으로 DataFrame merge
+#person의 ident를 기준으로 survey의 column들을 조인
+#디폴트는 교집합의 개념인 innerjoin 이다.
+dfmerge = person.merge(survey, left_on = 'ident', right_on = 'person')
+
+# person과 survey에 서로에게 없는 데이터가 있을 경우
+# 합집합의 개념인 how='outer'를 인자값으로 넘겨주면 된다.
+# 그럼 서로에게 없는 데이터는 NaN으로 채워진다.
+dfmerge = person.merge(survey, left_on='ident', right_on='person', how='outer')
+
+
+# person의 데이터는 전부 출력되고, 이것과 겹치는 survey의 값만 합쳐서 뽑고 싶으면
+# how='left'를 인자값으로 넘기면된다.
+dfmerge = person.merge(survey, left_on='ident', right_on='person', how='left')
+
+
+
+#반대로 survey의 값은 전부 출력되고, 이것과 겹치는 person의 값을 합쳐서 뽑고 싶으면
+#how='right'를 인자값으로 넘기면 된다.
+dfmerge = person.merge(survey, left_on='ident', right_on='person', how='right')
+
+'''
+만약 두 데이터의 공통된 값이 있는 컬럼 이름이 같다고 하면
+left_on, right_on 을 사용 하지 말고 통합으로 on='컬럼이름'을 인자값으로 넘기면 된다.
+'''
+

@@ -11,7 +11,7 @@ df1 = pd.DataFrame({'cust_id': ['c1', 'c1', 'c1', 'c2', 'c2', 'c2', 'c3', 'c3', 
                     'pch_amt': [30, 10, 0, 40, 15, 30, 0, 0, 10]})
 
 df_pivot = df1.pivot(index='cust_id', columns='prod_cd', values='pch_amt')
-# print(df_pivot)
+print(df_pivot)
 
 
 '''
