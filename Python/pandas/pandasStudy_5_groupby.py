@@ -79,7 +79,7 @@ dfGroup = df.groupby(['Sex', 'Pclass']).get_group(('male', 2))
 
 # dfagg = df.groupby(['Sex','Pclass']).Survived.agg(my_mean)
 
-
+# agg 함수를 이용해서 여러 연산을 한번에 할수도 있다.
 dfagg = df.groupby(['Sex', 'Pclass'])['Survived'].agg(['mean', 'sum'])
 
 print(dfagg)
